@@ -7,8 +7,13 @@ export interface DashboardState {
 
 export const initialState = {
     Data: {
-        chartData: [],
-        liquid: 0,
+        chartData: [
+            {
+                year: '0',
+                value: 0,
+            }
+        ],
+        liquid: 0.01,
         doctors: 0,
         patients: 0,
         nurses: 0,
@@ -19,7 +24,6 @@ export const initialState = {
 export default function (state = initialState, action: AnyAction) {
 
     switch (action.type) {
-
         case DashboardActionTypes.GetData:
             return { ...state, Data: action.data };
         default:

@@ -21,7 +21,7 @@ export default function (state = initialState, action: AnyAction) {
 
     switch (action.type) {
 
-        case SettingsActionTypes.GetData:
+        case SettingsActionTypes.GetSettingsData:
             return { ...state, Data: action.data };
         default:
             return state;
@@ -29,5 +29,5 @@ export default function (state = initialState, action: AnyAction) {
 }
 
 export enum SettingsActionTypes {
-    GetData = 'GetData',
+    GetSettingsData = 'GetSettingsData',
 }

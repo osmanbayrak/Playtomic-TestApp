@@ -59,9 +59,7 @@ class Settings extends React.Component<SettingsProps, {userName: string}> {
 
   private getData = () => {
     this.props.toggleLoading(true);
-    this.props.getSettingsData(this.props.history).then((item) => {
-      this.forceUpdate();
-    })
+    this.props.getSettingsData(this.props.history);
   };
 
 };

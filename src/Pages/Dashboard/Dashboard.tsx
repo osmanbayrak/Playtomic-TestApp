@@ -3,7 +3,7 @@ import './Dashboard.css';
 import '../../index.css';
 import "antd/dist/antd.css";
 import { Card } from 'antd';
-//import { Bar, Liquid } from '@ant-design/charts';
+import { Bar, Liquid } from '@ant-design/charts';
 import { UserOutlined } from '@ant-design/icons';
 import { DashboardDataDto } from '../../DataModels/DashboardDataDto';
 import { bindActionCreators } from 'redux';
@@ -40,9 +40,6 @@ class Dashboard extends React.Component<DashboardProps, {userName: string}> {
       xField: 'value',
       yField: 'year',
       seriesField: 'year',
-      legend: {
-        position: 'top-left',
-      },
       height: 180,
     };
     const liquidConfig = {
@@ -87,14 +84,14 @@ class Dashboard extends React.Component<DashboardProps, {userName: string}> {
             <p>Pharmacusts</p>
           </Card>
           <div className='flexBreak'></div>
-          {/* <Card className='chartCard'>
+          <Card className='chartCard'>
             Patients Discharged in Years
-            <Bar {...chartConfig as any} />
+            <Bar {...chartConfig} />
           </Card>
           <Card className='chartCard'>
             Hospital Cccupancy
-            <Liquid {...liquidConfig as any} />
-          </Card> */}
+            <Liquid {...liquidConfig} />
+          </Card>
         </div>
       </div>
     );
@@ -102,9 +99,7 @@ class Dashboard extends React.Component<DashboardProps, {userName: string}> {
 
   private getData = () => {
     this.props.toggleLoading(true);
-    this.props.getDashboardData(this.props.history).then((item) => {
-      this.forceUpdate();
-    })
+    this.props.getDashboardData(this.props.history);
   };
 
 };

@@ -5,16 +5,8 @@ import { collection, getDocs, getFirestore } from 'firebase/firestore/lite';
 import { DashboardActionTypes } from '../../Reducers/Dashboard/DashboardReducer';
 import { notification } from 'antd';
 import { PageEventActionTypes } from '../../Reducers/PageEvents/PageEventsReducer';
+import { firebaseConfig } from '../../FirebaseConfig';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyC2xl3mNGQbQ7jh8An2q-3hrlIX65FXc_s",
-    authDomain: "playtomic-auth-77056.firebaseapp.com",
-    projectId: "playtomic-auth-77056",
-    storageBucket: "playtomic-auth-77056.appspot.com",
-    messagingSenderId: "1007166344297",
-    appId: "1:1007166344297:web:30656113fae9349d9b66f8",
-    measurementId: "G-YR1L6MQ01L"
-};
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
