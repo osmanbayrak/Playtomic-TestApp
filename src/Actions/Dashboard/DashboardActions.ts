@@ -18,7 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export const getDashboardData = (navigate: any) => {
+export const getDashboardData = (history: any) => {
     return async (dispatch: Dispatch<any>): Promise<any> => {
         const dbCollection = collection(db, 'dashboard');
         // API request to get data
@@ -60,12 +60,12 @@ export const getDashboardData = (navigate: any) => {
                 });
                 // If user is not authenticated, redirect to login page
                 if (errorCode === 'permission-denied') {
-                    navigate('/login');
+                    history.push('/login');
                 };
             });
     };
 };
 
 export interface DashboardActionsDeclerations {
-    getDashboardData(navigate: any): Promise<any>;
+    getDashboardData(history: any): Promise<any>;
 }

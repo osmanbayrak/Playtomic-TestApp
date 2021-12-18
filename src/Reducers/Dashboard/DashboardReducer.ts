@@ -2,11 +2,11 @@ import { AnyAction } from 'redux';
 import { DashboardDataDto } from '../../DataModels/DashboardDataDto';
 
 export interface DashboardState {
-    dashboardData: DashboardDataDto;
+    Data: DashboardDataDto;
 }
 
 export const initialState = {
-    dashboardData: {
+    Data: {
         chartData: [],
         liquid: 0,
         doctors: 0,

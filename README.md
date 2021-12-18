@@ -1,3 +1,17 @@
+This is a simple 3 pages CRUD project for test. Just display some data fetched from an external API (Firebase).
+
+This project is built with 'React - Redux' architecture.
+
+Test Users1: testuser1@mail.com - password: 123456
+Test Users2: testuser2@mail.com - password: 123456
+
+Firebase API used for authentication and Fetching data.
+
+Firebase auth service store the Json Web Token in browser storage (indexedDb).
+
+On the firebase functions that send HTTP request to fetch data, they automaticly send the JWT in request header as Bearer token
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

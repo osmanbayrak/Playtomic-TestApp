@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { notification } from 'antd';
 import { PageEventActionTypes } from '../../Reducers/PageEvents/PageEventsReducer';
 import { loginInputDataDto } from '../../DataModels/LoginDataDto';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { LoginActionTypes } from '../../Reducers/Login/LoginReducer';
 
 const firebaseConfig = {
@@ -16,8 +16,9 @@ const firebaseConfig = {
     measurementId: "G-YR1L6MQ01L"
 };
 initializeApp(firebaseConfig);
+const auth = getAuth();
 
-export const getSettingsData = (auth: any, loginData: loginInputDataDto, navigate: any) => {
+export const Login = (loginData: loginInputDataDto, history: any) => {
     return async (dispatch: Dispatch<any>): Promise<any> => {
         (signInWithEmailAndPassword(auth, loginData.email, loginData.password))
             .then((userCredential: any) => {
@@ -26,7 +27,7 @@ export const getSettingsData = (auth: any, loginData: loginInputDataDto, navigat
                     type: LoginActionTypes.Signin,
                     data: user,
                 });
-                navigate('/Dashboard');
+                history.push('/Dashboard');
                 localStorage.setItem('user', JSON.stringify(user))
                 // ...
             })
@@ -46,7 +47,7 @@ export const getSettingsData = (auth: any, loginData: loginInputDataDto, navigat
     };
 };
 
-export interface SettingsActionsDeclerations {
-    getSettingsData(db: any, navigate: any): Promise<any>;
+export interface LoginActionsDeclerations {
+    Login(loginData: loginInputDataDto, history: any): Promise<any>;
 }
 

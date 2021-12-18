@@ -1,0 +1,62 @@
+.Login {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./login-bg.jpg), no-repeat center center;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Login-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .Login-logo {
+        animation: App-logo-float infinite 3s ease-in-out;
+    }
+}
+
+.Login-link {
+    color: rgb(112, 76, 182);
+}
+
+.loginBox {
+    top: 20%;
+    padding: 3% 3% 1%;
+    -webkit-box-shadow: 0px 0px 25px -2px #000000;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px -2px #000000;
+}
+
+.loginBox>h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bolder;
+    color: white;
+}
+
+.submitButton {
+    width: 100%;
+}
+
+.rememberMe {
+    color: white;
+}
+
+
+@keyframes App-logo-float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}

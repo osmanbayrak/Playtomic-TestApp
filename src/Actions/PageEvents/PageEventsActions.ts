@@ -19,7 +19,7 @@ export const toggleLoading = (loading: boolean) => {
     };
 };
 
-export interface PageEventActionsDeclerations {
+export interface PageEventsActionsDeclerations {
     toggleCollapse(collapsed: boolean): any;
     toggleLoading(loading: boolean): any;
 }

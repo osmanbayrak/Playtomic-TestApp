@@ -1,0 +1,31 @@
+.Settings {
+    background: rgb(234, 244, 253);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: whitesmoke;
+    padding: 30px;
+    justify-content: space-between;
+}
+
+.userName {
+    margin-top: 10px;
+    color: white;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.headerTitle {
+    font-size: 24px;
+    font-weight: bolder;
+    color: white;
+    margin-left: 10%;
+}

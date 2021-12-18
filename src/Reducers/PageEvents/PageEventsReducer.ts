@@ -14,9 +14,9 @@ export default function (state = initialState, action: AnyAction) {
 
     switch (action.type) {
         case PageEventActionTypes.CollapseToggle:
-            return { ...state, Data: action.data };
+            return { ...state, collapsed: action.data };
         case PageEventActionTypes.Loading:
-            return { ...state, Data: action.data };
+            return { ...state, loading: action.data };
         default:
             return state;
     }

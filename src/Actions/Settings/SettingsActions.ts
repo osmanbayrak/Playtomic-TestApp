@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import { SettingsDataDto } from '../../DataModels/SettingsDataDto';
 import { initializeApp } from 'firebase/app';
-import { collection, getDocs } from 'firebase/firestore/lite';
+import { collection, getDocs, getFirestore } from 'firebase/firestore/lite';
 import { SettingsActionTypes } from '../../Reducers/Settings/SettingsReducer';
 import { notification } from 'antd';
 import { PageEventActionTypes } from '../../Reducers/PageEvents/PageEventsReducer';
@@ -15,9 +15,10 @@ const firebaseConfig = {
     appId: "1:1007166344297:web:30656113fae9349d9b66f8",
     measurementId: "G-YR1L6MQ01L"
 };
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-export const getSettingsData = (db: any, navigate: any) => {
+export const getSettingsData = (history: any) => {
     return async (dispatch: Dispatch<any>): Promise<any> => {
         const dbCollection = collection(db, 'dashboard');
         // API request to get data
@@ -59,12 +60,12 @@ export const getSettingsData = (db: any, navigate: any) => {
                 });
                 // If user is not authenticated, redirect to login page
                 if (errorCode === 'permission-denied') {
-                    navigate('/login');
+                    history.push('/login');
                 };
             });
     };
 };
 
 export interface SettingsActionsDeclerations {
-    getSettingsData(db: any, navigate: any): Promise<any>;
+    getSettingsData(history: any): Promise<any>;
 }

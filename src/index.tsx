@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 // => Redux & Store
 import { Provider } from 'react-redux';
-import { createStore, Store, applyMiddleware, compose } from 'redux';
+import { createStore, Store, applyMiddleware } from 'redux';
 import reducers from './Reducers/ReducerCombiner';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
@@ -21,7 +21,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <App loading={false} />
         </BrowserRouter>
     </Provider>
   </React.StrictMode>,

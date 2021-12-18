@@ -2,11 +2,11 @@ import { AnyAction } from 'redux';
 import { SettingsDataDto } from '../../DataModels/SettingsDataDto';
 
 export interface SettingsState {
-    settingsData: SettingsDataDto
+    Data: SettingsDataDto
 }
 
 export const initialState = {
-    settingsData: {
+    Data: {
         hospitalName: '',
         buildDate: '',
         founders: '',

@@ -1,35 +1,45 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import "antd/dist/antd.css";
 import { Spin } from 'antd';
-import * as PageEventActions from './Actions/PageEvents/PageEventsActions';
 import Login from './Pages/Login/Login';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Settings from './Pages/Settings/Settings';
 import SideMenu from './Components/SideMenu/SideMenu';
-import NotFound from './NotFound';
+import NotFound from './Pages/NotFound/NotFound';
 import { AppState } from './Reducers/ReducerCombiner';
 import { connect } from 'react-redux';
+import history from './history';
 
-interface AppProps extends PageEventActions.PageEventActionsDeclerations {
+interface AppProps {
   loading?: boolean;
+  showMenu?: boolean;
 }
 
 class App extends React.Component<AppProps> {
 
+  componentDidMount() {
+    history.listen( () =>  {
+      this.forceUpdate();
+    });
+  };
+
   render() {
     const { loading } = this.props;
-    let currentPath = window.location.pathname;
+    let showSideMenu: boolean = window.location.pathname === '/Dashboard' || window.location.pathname === '/Settings';
+
     return (
       <Spin spinning={loading}>
-      {currentPath === '/Dashboard' || currentPath === '/Settings' ? <SideMenu /> : null}
-      <Routes>
-          <Route path="/" element={<Login reRender={() => {this.forceUpdate();}} />}/>
-          <Route path="/Login" element={<Login reRender={() => {this.forceUpdate();}} />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="/Settings" element={<Settings />} />
-          <Route path="*" element={<NotFound />}/>
-      </Routes>
+      {showSideMenu ? <SideMenu collapsed={false} history={history} /> : null}
+      <Router history={history}>
+        <Switch>
+          <Route exact path="/" component={Login}/>
+          <Route exact path="/Login" component={Login} />
+          <Route exact path="/Dashboard" component={Dashboard} />
+          <Route exact path="/Settings" component={Settings} />
+          <Route exact path="*" component={NotFound}/>
+        </Switch>
+      </Router>
       </Spin>
     )
   }
@@ -38,7 +48,7 @@ class App extends React.Component<AppProps> {
 const mapStateToProps = (state: AppState, props: AppProps) => {
   return {
       ...props,
-      loading: state.pageEvents.loading
+      loading: state.pageEvents.loading,
   };
 };
 

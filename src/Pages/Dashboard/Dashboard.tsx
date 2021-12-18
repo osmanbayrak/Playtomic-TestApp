@@ -5,35 +5,32 @@ import "antd/dist/antd.css";
 import { Card } from 'antd';
 //import { Bar, Liquid } from '@ant-design/charts';
 import { UserOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router';
 import { DashboardDataDto } from '../../DataModels/DashboardDataDto';
 import { bindActionCreators } from 'redux';
 import * as DashboardActions from '../../Actions/Dashboard/DashboardActions';
-import * as PageEventActions from '../../Actions/PageEvents/PageEventsActions';
+import * as PageEventsActions from '../../Actions/PageEvents/PageEventsActions';
 import { connect } from 'react-redux';
 import { AppState } from '../../Reducers/ReducerCombiner';
 
-interface DashboardProps extends PageEventActions.PageEventActionsDeclerations, DashboardActions.DashboardActionsDeclerations {
-  db: any;
+interface DashboardProps extends PageEventsActions.PageEventsActionsDeclerations, DashboardActions.DashboardActionsDeclerations {
   data: DashboardDataDto;
   collapsed: boolean;
+  history: any;
 };
 
 class Dashboard extends React.Component<DashboardProps, {userName: string}> {
-  private navigate = useNavigate();
 
   constructor(props: any) {
     super(props);
     this.state = {
       userName: ''
     };
-    
   };
   componentDidMount() {
     this.getData();
     const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') || '') : undefined;
     this.setState({userName: user ? user.displayName : ''});
-  }
+  };
 
   render() {
     const { collapsed, data } = this.props;
@@ -105,7 +102,9 @@ class Dashboard extends React.Component<DashboardProps, {userName: string}> {
 
   private getData = () => {
     this.props.toggleLoading(true);
-    this.props.getDashboardData(this.navigate);
+    this.props.getDashboardData(this.props.history).then((item) => {
+      this.forceUpdate();
+    })
   };
 
 };
@@ -113,13 +112,13 @@ class Dashboard extends React.Component<DashboardProps, {userName: string}> {
 const mapStateToProps = (state: AppState, props: DashboardProps) => {
   return {
       ...props,
-      data: state.dashboard.dashboardData,
+      data: state.dashboard.Data,
       collapsed: state.pageEvents.collapsed,
   };
 };
 
 const mapDispatchToProps = (dispatch: any, state: any) => {
-  return bindActionCreators({ ...DashboardActions, ...PageEventActions }, dispatch);
+  return bindActionCreators({ ...DashboardActions, ...PageEventsActions }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
