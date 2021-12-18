@@ -3,7 +3,6 @@ import './Dashboard.css';
 import '../../index.css';
 import "antd/dist/antd.css";
 import { Card } from 'antd';
-import { Bar, Liquid } from '@ant-design/charts';
 import { UserOutlined } from '@ant-design/icons';
 import { DashboardDataDto } from '../../DataModels/DashboardDataDto';
 import { bindActionCreators } from 'redux';
@@ -11,8 +10,10 @@ import * as DashboardActions from '../../Actions/Dashboard/DashboardActions';
 import * as PageEventsActions from '../../Actions/PageEvents/PageEventsActions';
 import { connect } from 'react-redux';
 import { AppState } from '../../Reducers/ReducerCombiner';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie } from 'recharts';
 
-interface DashboardProps extends PageEventsActions.PageEventsActionsDeclerations, DashboardActions.DashboardActionsDeclerations {
+interface DashboardProps extends PageEventsActions.PageEventsActionsDeclerations, 
+DashboardActions.DashboardActionsDeclerations {
   data: DashboardDataDto;
   collapsed: boolean;
   history: any;
@@ -34,27 +35,6 @@ class Dashboard extends React.Component<DashboardProps, {userName: string}> {
 
   render() {
     const { collapsed, data } = this.props;
-    // Region Start #Graph Configs
-    const chartConfig = {
-      data: data.chartData,
-      xField: 'value',
-      yField: 'year',
-      seriesField: 'year',
-      height: 180,
-    };
-    const liquidConfig = {
-      percent: data.liquid,
-      shape: 'rect',
-      outline: {
-        border: 2,
-        distance: 4,
-      },
-      wave: {
-        length: 128,
-      },
-      height: 180,
-    };
-    // Region End
 
     return (
       <div className="Dashboard">
@@ -67,6 +47,8 @@ class Dashboard extends React.Component<DashboardProps, {userName: string}> {
           </div>
         </div>
         <div className="content" style={{margin: `20px 20px 20px ${collapsed ? '20px' : '220px'}`}} id="content">
+          <div className='contentTitle'>Hospital Staff</div>
+          <div className='flexBreak'></div>
           <Card bodyStyle={{minWidth: '97px'}} className='dashboardCards'>
             <p>{data.doctors}</p>
             <p>Doctors</p>
@@ -86,11 +68,35 @@ class Dashboard extends React.Component<DashboardProps, {userName: string}> {
           <div className='flexBreak'></div>
           <Card className='chartCard'>
             Patients Discharged in Years
-            <Bar {...chartConfig} />
+            <BarChart
+              width={380}
+              height={200}
+              data={data.chartData}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="Year" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="Discharged" fill="#82ca9d" />
+              <Bar dataKey="Patients" fill="#6e0000" />
+            </BarChart>
           </Card>
           <Card className='chartCard'>
-            Hospital Cccupancy
-            <Liquid {...liquidConfig} />
+            Profit Per Month
+            <PieChart margin={{top: 65}} width={380} height={250}>
+              <Pie
+                isAnimationActive={false}
+                dataKey="Profit"
+                startAngle={180}
+                endAngle={0}
+                data={data.pieData}
+                cx="50%"
+                cy="50%"
+                outerRadius={110}
+                fill="#8884d8"
+                label
+              />
+            </PieChart>
           </Card>
         </div>
       </div>

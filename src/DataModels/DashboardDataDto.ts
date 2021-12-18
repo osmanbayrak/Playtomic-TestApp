@@ -1,6 +1,6 @@
 export interface DashboardDataDto {
     chartData: BarChartDto[];
-    liquid: number;
+    pieData: pieDataDto[];
     doctors: number;
     patients: number;
     nurses: number;
@@ -8,6 +8,12 @@ export interface DashboardDataDto {
 };
 
 export interface BarChartDto {
-    value: number;
-    year: string;
-}
+    Patients: number;
+    Discharged: number;
+    Year: string;
+};
+
+export interface pieDataDto {
+    Profit: number;
+    Month: string;
+};

@@ -10,7 +10,8 @@ import * as PageEventsActions from '../../Actions/PageEvents/PageEventsActions';
 import { connect } from 'react-redux';
 import { AppState } from '../../Reducers/ReducerCombiner';
 
-interface SettingsProps extends PageEventsActions.PageEventsActionsDeclerations, SettingsActions.SettingsActionsDeclerations {
+interface SettingsProps extends PageEventsActions.PageEventsActionsDeclerations, 
+SettingsActions.SettingsActionsDeclerations {
   data: SettingsDataDto;
   collapsed: boolean;
   history: any;
@@ -45,12 +46,12 @@ class Settings extends React.Component<SettingsProps, {userName: string}> {
             </div>
             <div className="content" style={{margin: `20px 20px 20px ${collapsed ? '20px' : '220px'}`}} id="content">
             <ul>
-                <li><span style={{fontWeight: 'bolder'}}>Hospital Name:</span> {data.hospitalName}</li>
-                <li><span style={{fontWeight: 'bolder'}}>Since:</span> {data.buildDate}</li>
-                <li><span style={{fontWeight: 'bolder'}}>Location:</span> {data.location}</li>
-                <li><span style={{fontWeight: 'bolder'}}>Status:</span> {data.isAvailable}</li>
-                <li><span style={{fontWeight: 'bolder'}}>Working Hours:</span> {data.workingHours}</li>
-                <li><span style={{fontWeight: 'bolder'}}>Contact Info:</span> {data.contactInfo}</li>
+              <li><span className='settingLabel'>Hospital Name:</span> {data.hospitalName}</li>
+              <li><span className='settingLabel'>Since:</span> {data.buildDate}</li>
+              <li><span className='settingLabel'>Location:</span> {data.location}</li>
+              <li><span className='settingLabel'>Status:</span> {data.isAvailable}</li>
+              <li><span className='settingLabel'>Working Hours:</span> {data.workingHours}</li>
+              <li><span className='settingLabel'>Contact Info:</span> {data.contactInfo}</li>
             </ul>
             </div>
         </div>

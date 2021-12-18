@@ -1,6 +1,10 @@
 import { AnyAction } from 'redux';
 import { SettingsDataDto } from '../../DataModels/SettingsDataDto';
 
+export enum SettingsActionTypes {
+    GetSettingsData = 'GetSettingsData',
+};
+
 export interface SettingsState {
     Data: SettingsDataDto
 }
@@ -25,9 +29,5 @@ export default function (state = initialState, action: AnyAction) {
             return { ...state, Data: action.data };
         default:
             return state;
-    }
-}
-
-export enum SettingsActionTypes {
-    GetSettingsData = 'GetSettingsData',
-}
+    };
+};

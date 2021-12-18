@@ -1,6 +1,10 @@
 import { AnyAction } from 'redux';
 import { userInfoDto } from '../../DataModels/LoginDataDto';
 
+export enum LoginActionTypes {
+    Signin = 'Signin',
+};
+
 export interface LoginState {
     userInfo: userInfoDto
 }
@@ -26,9 +30,5 @@ export default function (state = initialState, action: AnyAction) {
             return { ...state, userInfo: action.data };
         default:
             return state;
-    }
-}
-
-export enum LoginActionTypes {
-    Signin = 'Signin',
-}
+    };
+};

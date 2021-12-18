@@ -1,14 +1,13 @@
 import { Dispatch } from 'react';
 import { DashboardDataDto } from '../../DataModels/DashboardDataDto';
 import { initializeApp } from 'firebase/app';
-import { collection, getDocs, getFirestore } from 'firebase/firestore/lite';
+import { collection, getDocs } from 'firebase/firestore/lite';
 import { DashboardActionTypes } from '../../Reducers/Dashboard/DashboardReducer';
 import { notification } from 'antd';
 import { PageEventActionTypes } from '../../Reducers/PageEvents/PageEventsReducer';
-import { firebaseConfig } from '../../FirebaseConfig';
+import { db, firebaseConfig } from '../../FirebaseConfig';
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+initializeApp(firebaseConfig);
 
 export const getDashboardData = (history: any) => {
     return async (dispatch: Dispatch<any>): Promise<any> => {

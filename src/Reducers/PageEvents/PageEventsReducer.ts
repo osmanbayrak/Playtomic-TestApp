@@ -1,5 +1,10 @@
 import { AnyAction } from "redux";
 
+export enum PageEventActionTypes {
+    CollapseToggle = 'CollapseToggle',
+    Loading = 'Loading',
+};
+
 export interface pageEventState {
     collapsed: boolean;
     loading: boolean;
@@ -19,10 +24,5 @@ export default function (state = initialState, action: AnyAction) {
             return { ...state, loading: action.data };
         default:
             return state;
-    }
-}
-
-export enum PageEventActionTypes {
-    CollapseToggle = 'CollapseToggle',
-    Loading = 'Loading',
-}
+    };
+};

@@ -9,7 +9,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AppState } from '../../Reducers/ReducerCombiner';
 
-interface LoginProps extends LoginActions.LoginActionsDeclerations, PageEventsActions.PageEventsActionsDeclerations {
+interface LoginProps extends LoginActions.LoginActionsDeclerations, 
+PageEventsActions.PageEventsActionsDeclerations {
   history: any
 };
 

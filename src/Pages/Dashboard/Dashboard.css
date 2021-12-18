@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-size: 16px;
 }
 
 .content {
@@ -14,6 +15,14 @@
     background-color: whitesmoke;
     padding: 30px;
     justify-content: space-between;
+}
+
+.contentTitle {
+    padding: 10px;
+    margin: auto;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: underline;
 }
 
 .userName {
@@ -31,7 +40,7 @@
 .chartCard {
     text-align: center;
     margin-top: 30px;
-    flex-basis: 43%;
+    flex-basis: 40%;
 }
 
 .headerTitle {
@@ -42,6 +51,7 @@
 }
 
 .dashboardCards {
+    font-weight: 600;
     text-align: center;
     flex-basis: 22%;
     min-width: 97px;

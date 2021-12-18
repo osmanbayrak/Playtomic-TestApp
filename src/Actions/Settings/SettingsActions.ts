@@ -1,14 +1,13 @@
 import { Dispatch } from 'react';
 import { SettingsDataDto } from '../../DataModels/SettingsDataDto';
 import { initializeApp } from 'firebase/app';
-import { collection, getDocs, getFirestore } from 'firebase/firestore/lite';
+import { collection, getDocs } from 'firebase/firestore/lite';
 import { SettingsActionTypes } from '../../Reducers/Settings/SettingsReducer';
 import { notification } from 'antd';
 import { PageEventActionTypes } from '../../Reducers/PageEvents/PageEventsReducer';
-import { firebaseConfig } from '../../FirebaseConfig';
+import { db, firebaseConfig } from '../../FirebaseConfig';
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+initializeApp(firebaseConfig);
 
 export const getSettingsData = (history: any) => {
     return async (dispatch: Dispatch<any>): Promise<any> => {
